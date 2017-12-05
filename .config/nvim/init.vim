@@ -50,3 +50,5 @@ nnoremap <C-p> :Files<CR>
 nnoremap <Up> gk
 nnoremap <Down> gj
 
+cnoreabbrev Q q
+

@@ -95,10 +95,25 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 export PATH="/Users/sarakkal/miniconda3/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
 # Easy access
 export projects="$HOME/projects"
 export atls="$HOME/projects/bitbucket.org/atlassian"
+export VAULT_ADDR="https://vault.growth.internal.atlassian.com:8200"
 
 alias projects="cd $projects"
 alias atls="cd $atls"
 alias vim="nvim"
+
+Export EDITOR=nvim
+
+# cloudtoken additions
+bashrc_additions="$HOME/miniconda3/share/cloudtoken/shell_additions/bashrc_additions"
+if [[ -f $bashrc_additions ]]
+then
+	source $bashrc_additions
+fi
+
+# todo manager
+alias todo='python /Users/sarakkal/projects/github.com/t/t.py --task-dir ~/tasks --list tasks'
+
