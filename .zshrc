@@ -105,7 +105,8 @@ alias projects="cd $projects"
 alias atls="cd $atls"
 alias vim="nvim"
 
-Export EDITOR=nvim
+export EDITOR=nvim
+export PYSPARK_DRIVER_PYTHON=ipython
 
 # cloudtoken additions
 bashrc_additions="$HOME/miniconda3/share/cloudtoken/shell_additions/bashrc_additions"
@@ -117,3 +118,5 @@ fi
 # todo manager
 alias todo='python /Users/sarakkal/projects/github.com/t/t.py --task-dir ~/tasks --list tasks'
 
+# iterm integration
+source ~/.iterm2_shell_integration.zsh

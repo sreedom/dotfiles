@@ -11,9 +11,14 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'w0rp/ale'
 Plug 'maralla/completor.vim'
-Plug 'liuchengxu/space-vim-dark'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdcommenter'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+
+" colorschemes
+Plug 'liuchengxu/space-vim-dark'
+Plug 'junegunn/seoul256.vim'
 call plug#end()
 
 " vim-plug settings end
