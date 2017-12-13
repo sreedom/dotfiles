@@ -120,3 +120,4 @@ alias todo='python /Users/sarakkal/projects/github.com/t/t.py --task-dir ~/tasks
 
 # iterm integration
 source ~/.iterm2_shell_integration.zsh
+#export PATH=$PATH:/Users/sarakkal/projects/spark-2.2.0-bin-hadoop2.7/bin

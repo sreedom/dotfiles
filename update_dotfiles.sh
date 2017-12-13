@@ -3,7 +3,7 @@ set -x
 # directories that are copied as is here
 # no trailing slashes please
 COPY_DIRS=(~/.config ~/.vim ~/.oh-my-zsh)
-COPY_FILES_REL=(~/.zshrc ~/.vimrc ~/.bash_profile)
+COPY_FILES_REL=(~/.zshrc ~/.vimrc ~/.bash_profile ~/.brew-list)
 
 function update_dotfiles {
 	# ideally this function should create dirs and put them with the same name here
@@ -24,5 +24,10 @@ function update_dotfiles {
 	find . -mindepth 2 -type d -name ".git*" | xargs rm -rf
 }
 
+function update_brew {
+	brew list > ~/.brew-list
+}
+
+update_brew
 update_dotfiles && echo "dotfiles updated. dont forget to git add new dotfiles and remove any .git in the subfolders"
 
