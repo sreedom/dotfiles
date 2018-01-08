@@ -29,8 +29,7 @@ set nu
 set autoindent
 set ignorecase
 set hlsearch
-" colorscheme desert
-" colorscheme space-vim-dark
+colorscheme space-vim-dark
 set nocompatible
 set  mouse=a
 " Yank/Paste goes into/from the clipboard.
@@ -47,9 +46,21 @@ nnoremap <C-Right> <C-w>l<CR>
 
 
 "plugin specific configuration
+"NerdTree
 let g:NERDSpaceDelims = 1
 let g:NERDDefaultAlign = 1
 
+highlight ALEError cterm=undercurl
+let g:ale_fixers = {
+\    'python': [
+\        'yapf'
+\    ],
+\}
+nmap <F8> <Plug>(ale_fix)
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set smarttab
 " Keymaps
 nnoremap <C-p> :Files<CR>     
 nnoremap <Up> gk

@@ -9,10 +9,12 @@ imagemagick
 jemalloc
 jpeg
 libevent
+libidn2
 libpng
 libtermkey
 libtiff
 libtool
+libunistring
 libuv
 libvterm
 lua
@@ -23,11 +25,14 @@ micros-cli
 msgpack
 neovim
 openssl
+openssl@1.1
 parquet-tools
 pcre
 postgresql
 python
 readline
+sbt
+scala
 sqlite
 the_silver_searcher
 tmux
@@ -35,4 +40,5 @@ tree
 unibilium
 vault
 vim
+wget
 xz

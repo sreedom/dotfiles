@@ -121,3 +121,9 @@ alias todo='python /Users/sarakkal/projects/github.com/t/t.py --task-dir ~/tasks
 # iterm integration
 source ~/.iterm2_shell_integration.zsh
 #export PATH=$PATH:/Users/sarakkal/projects/spark-2.2.0-bin-hadoop2.7/bin
+#
+function vssh {
+	hostname=${1:-10.65.224.197}
+	echo vault-ssh --role dlf hadoop@$hostname -- -D localhost:9999
+	vault-ssh --role dlf hadoop@$hostname -- -D localhost:9999
+}
