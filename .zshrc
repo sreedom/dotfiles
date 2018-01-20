@@ -118,10 +118,13 @@ fi
 # todo manager
 alias todo='python /Users/sarakkal/projects/github.com/t/t.py --task-dir ~/tasks --list tasks'
 
+alias pypy='/usr/local/pypy3-v5.10.1-osx64/bin/pypy3'
 # iterm integration
 source ~/.iterm2_shell_integration.zsh
-#export PATH=$PATH:/Users/sarakkal/projects/spark-2.2.0-bin-hadoop2.7/bin
-#
+
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
+
 function vssh {
 	hostname=${1:-10.65.224.197}
 	echo vault-ssh --role dlf hadoop@$hostname -- -D localhost:9999

@@ -5,9 +5,11 @@ freetype
 fzf
 gdbm
 gettext
+icu4c
 imagemagick
 jemalloc
 jpeg
+laas-cli
 libevent
 libidn2
 libpng
@@ -24,6 +26,8 @@ maven
 micros-cli
 msgpack
 neovim
+node
+nvm
 openssl
 openssl@1.1
 parquet-tools

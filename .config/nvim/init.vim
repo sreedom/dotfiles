@@ -56,6 +56,11 @@ let g:ale_fixers = {
 \        'yapf'
 \    ],
 \}
+let g:ale_linters = {
+\    'python': [
+\        'flake8'
+\    ],
+\}
 nmap <F8> <Plug>(ale_fix)
 set tabstop=4
 set shiftwidth=4
