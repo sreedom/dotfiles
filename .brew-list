@@ -1,4 +1,3 @@
-apache-spark
 cscope
 flake8
 freetype
@@ -9,7 +8,6 @@ icu4c
 imagemagick
 jemalloc
 jpeg
-laas-cli
 libevent
 libidn2
 libpng
@@ -21,7 +19,6 @@ libuv
 libvterm
 lua
 luajit
-macvim
 maven
 micros-cli
 msgpack
@@ -33,7 +30,6 @@ openssl@1.1
 parquet-tools
 pcre
 postgresql
-python
 readline
 sbt
 scala
@@ -43,6 +39,5 @@ tmux
 tree
 unibilium
 vault
-vim
 wget
 xz
