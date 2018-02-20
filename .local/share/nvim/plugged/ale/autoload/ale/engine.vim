@@ -32,16 +32,20 @@ function! ale#engine#IsExecutable(buffer, executable) abort
         return 0
     endif
 
-    if has_key(s:executable_cache_map, a:executable)
-        return 1
+    " Check for a cached executable() check.
+    let l:result = get(s:executable_cache_map, a:executable, v:null)
+
+    if l:result isnot v:null
+        return l:result
     endif
 
-    let l:result = 0
+    " Check if the file is executable, and convert -1 to 1.
+    let l:result = executable(a:executable) isnot 0
 
-    if executable(a:executable)
-        let s:executable_cache_map[a:executable] = 1
-
-        let l:result = 1
+    " Cache the executable check if we found it, or if the option to cache
+    " failing checks is on.
+    if l:result || g:ale_cache_executable_check_failures
+        let s:executable_cache_map[a:executable] = l:result
     endif
 
     if g:ale_history_enabled
@@ -302,13 +306,13 @@ function! ale#engine#SetResults(buffer, loclist) abort
         call ale#highlight#SetHighlights(a:buffer, a:loclist)
     endif
 
-    if g:ale_echo_cursor
-        " Try and echo the warning now.
-        " This will only do something meaningful if we're in normal mode.
-        call ale#cursor#EchoCursorWarning()
-    endif
-
     if l:linting_is_done
+        if g:ale_echo_cursor
+            " Try and echo the warning now.
+            " This will only do something meaningful if we're in normal mode.
+            call ale#cursor#EchoCursorWarning()
+        endif
+
         " Reset the save event marker, used for opening windows, etc.
         call setbufvar(a:buffer, 'ale_save_event_fired', 0)
 
@@ -317,6 +321,8 @@ function! ale#engine#SetResults(buffer, loclist) abort
         call ale#engine#RemoveManagedFiles(a:buffer)
 
         " Call user autocommands. This allows users to hook into ALE's lint cycle.
+        silent doautocmd <nomodeline> User ALELintPost
+        " Old DEPRECATED name; call it for backwards compatibility.
         silent doautocmd <nomodeline> User ALELint
     endif
 endfunction
@@ -506,7 +512,7 @@ function! s:RunJob(options) abort
         endif
     endif
 
-    let l:command = ale#job#PrepareCommand(l:command)
+    let l:command = ale#job#PrepareCommand(l:buffer, l:command)
     let l:job_options = {
     \   'mode': 'nl',
     \   'exit_cb': function('s:HandleExit'),
@@ -697,6 +703,13 @@ function! s:CheckWithLSP(buffer, linter) abort
     \   : ale#lsp#message#DidChange(a:buffer)
     let l:request_id = ale#lsp#Send(l:id, l:change_message, l:root)
 
+    " If this was a file save event, also notify the server of that.
+    if a:linter.lsp isnot# 'tsserver'
+    \&& getbufvar(a:buffer, 'ale_save_event_fired', 0)
+      let l:save_message = ale#lsp#message#DidSave(a:buffer)
+      let l:request_id = ale#lsp#Send(l:id, l:save_message, l:root)
+    endif
+
     if l:request_id != 0
         if index(l:info.active_linter_list, a:linter.name) < 0
             call add(l:info.active_linter_list, a:linter.name)
@@ -780,6 +793,8 @@ function! ale#engine#RunLinters(buffer, linters, should_lint_file) abort
 
     " We can only clear the results if we aren't checking the buffer.
     let l:can_clear_results = !ale#engine#IsCheckingBuffer(a:buffer)
+
+    silent doautocmd <nomodeline> User ALELintPre
 
     for l:linter in a:linters
         " Only run lint_file linters if we should.

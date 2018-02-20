@@ -188,6 +188,10 @@ let g:ale_history_enabled = get(g:, 'ale_history_enabled', 1)
 " A flag for storing the full output of commands in the history.
 let g:ale_history_log_output = get(g:, 'ale_history_log_output', 1)
 
+" A flag for caching failed executable checks.
+" This is off by default, because it will cause problems.
+call ale#Set('cache_executable_check_failures', 0)
+
 " A dictionary mapping regular expression patterns to arbitrary buffer
 " variables to be set. Useful for configuration ALE based on filename
 " patterns.
@@ -204,6 +208,9 @@ call ale#Set('type_map', {})
 call ale#Set('completion_enabled', 0)
 call ale#Set('completion_delay', 100)
 call ale#Set('completion_max_suggestions', 50)
+
+" A setting for wrapping commands.
+call ale#Set('command_wrapper', '')
 
 if g:ale_set_balloons
     call ale#balloon#Enable()
@@ -281,7 +288,7 @@ call ale#toggle#InitAuGroups()
 augroup ALECleanupGroup
     autocmd!
     " Clean up buffers automatically when they are unloaded.
-    autocmd BufUnload * call ale#engine#Cleanup(str2nr(expand('<abuf>')))
+    autocmd BufDelete * call ale#engine#Cleanup(str2nr(expand('<abuf>')))
     autocmd QuitPre * call ale#events#QuitEvent(str2nr(expand('<abuf>')))
 augroup END
 

@@ -3,7 +3,7 @@ set -x
 # directories that are copied as is here
 # no trailing slashes please
 COPY_DIRS=(~/.config ~/.vim ~/.oh-my-zsh)
-COPY_FILES_REL=(~/.zshrc ~/.vimrc ~/.bash_profile ~/.brew-list)
+COPY_FILES_REL=(~/.zshrc ~/.vimrc ~/.bash_profile ~/.brew-list ~/.pip-freeze)
 
 function update_dotfiles {
 	# ideally this function should create dirs and put them with the same name here
@@ -28,6 +28,10 @@ function update_brew {
 	brew list > ~/.brew-list
 }
 
+function update_pip {
+	pip freeze > ~/.pip-freeze
+}
 update_brew
+update_pip
 update_dotfiles && echo "dotfiles updated. dont forget to git add new dotfiles and remove any .git in the subfolders"
-
+echo "git commit -am \"updated dotfiles for \`date\`\""

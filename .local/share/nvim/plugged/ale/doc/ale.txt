@@ -57,6 +57,7 @@ CONTENTS                                                         *ale-contents*
       hadolint............................|ale-dockerfile-hadolint|
     elixir................................|ale-elixir-options|
       mix.................................|ale-elixir-mix|
+      dialyxir............................|ale-elixir-dialyxir|
     elm...................................|ale-elm-options|
       elm-format..........................|ale-elm-elm-format|
       elm-make............................|ale-elm-elm-make|
@@ -64,21 +65,30 @@ CONTENTS                                                         *ale-contents*
       erlc................................|ale-erlang-erlc|
       syntaxerl...........................|ale-erlang-syntaxerl|
     eruby.................................|ale-eruby-options|
+    fish..................................|ale-fish-options|
     fortran...............................|ale-fortran-options|
       gcc.................................|ale-fortran-gcc|
+    fountain..............................|ale-fountain-options|
     fusionscript..........................|ale-fuse-options|
       fusion-lint.........................|ale-fuse-fusionlint|
+    git commit............................|ale-gitcommit-options|
+      gitlint.............................|ale-gitcommit-gitlint|
     glsl..................................|ale-glsl-options|
       glslang.............................|ale-glsl-glslang|
+      glslls..............................|ale-glsl-glslls|
     go....................................|ale-go-options|
+      gobuild.............................|ale-go-gobuild|
       gofmt...............................|ale-go-gofmt|
       gometalinter........................|ale-go-gometalinter|
     graphql...............................|ale-graphql-options|
       eslint..............................|ale-graphql-eslint|
       gqlint..............................|ale-graphql-gqlint|
+      prettier............................|ale-graphql-prettier|
     handlebars............................|ale-handlebars-options|
       ember-template-lint.................|ale-handlebars-embertemplatelint|
     haskell...............................|ale-haskell-options|
+      brittany............................|ale-haskell-brittany|
+      ghc.................................|ale-haskell-ghc|
       hdevtools...........................|ale-haskell-hdevtools|
       hfmt................................|ale-haskell-hfmt|
       stack-build.........................|ale-haskell-stack-build|
@@ -91,9 +101,11 @@ CONTENTS                                                         *ale-contents*
     java..................................|ale-java-options|
       checkstyle..........................|ale-java-checkstyle|
       javac...............................|ale-java-javac|
+      google-java-format..................|ale-java-google-java-format|
     javascript............................|ale-javascript-options|
       eslint..............................|ale-javascript-eslint|
       flow................................|ale-javascript-flow|
+      importjs............................|ale-javascript-importjs|
       jscs................................|ale-javascript-jscs|
       jshint..............................|ale-javascript-jshint|
       prettier............................|ale-javascript-prettier|
@@ -102,7 +114,9 @@ CONTENTS                                                         *ale-contents*
       standard............................|ale-javascript-standard|
       xo..................................|ale-javascript-xo|
     json..................................|ale-json-options|
+      fixjson.............................|ale-json-fixjson|
       jsonlint............................|ale-json-jsonlint|
+      jq..................................|ale-json-jq|
       prettier............................|ale-json-prettier|
     kotlin................................|ale-kotlin-options|
       kotlinc.............................|ale-kotlin-kotlinc|
@@ -116,8 +130,10 @@ CONTENTS                                                         *ale-contents*
     llvm..................................|ale-llvm-options|
       llc.................................|ale-llvm-llc|
     lua...................................|ale-lua-options|
+      luac................................|ale-lua-luac|
       luacheck............................|ale-lua-luacheck|
     markdown..............................|ale-markdown-options|
+      prettier............................|ale-markdown-prettier|
       write-good..........................|ale-markdown-write-good|
     nroff.................................|ale-nroff-options|
       write-good..........................|ale-nroff-write-good|
@@ -140,8 +156,12 @@ CONTENTS                                                         *ale-contents*
       phpcs...............................|ale-php-phpcs|
       phpmd...............................|ale-php-phpmd|
       phpstan.............................|ale-php-phpstan|
+    po....................................|ale-po-options|
+      write-good..........................|ale-po-write-good|
     pod...................................|ale-pod-options|
       write-good..........................|ale-pod-write-good|
+    pony..................................|ale-pony-options|
+      ponyc...............................|ale-pony-ponyc|
     proto.................................|ale-proto-options|
       protoc-gen-lint.....................|ale-proto-protoc-gen-lint|
     pug...................................|ale-pug-options|
@@ -153,6 +173,7 @@ CONTENTS                                                         *ale-contents*
       flake8..............................|ale-python-flake8|
       isort...............................|ale-python-isort|
       mypy................................|ale-python-mypy|
+      prospector..........................|ale-python-prospector|
       pycodestyle.........................|ale-python-pycodestyle|
       pylint..............................|ale-python-pylint|
       pyls................................|ale-python-pyls|
@@ -190,6 +211,7 @@ CONTENTS                                                         *ale-contents*
     sml...................................|ale-sml-options|
       smlnj...............................|ale-sml-smlnj|
     solidity..............................|ale-solidity-options|
+      solhint.............................|ale-solidity-solhint|
       solium..............................|ale-solidity-solium|
     spec..................................|ale-spec-options|
       rpmlint.............................|ale-spec-rpmlint|
@@ -220,6 +242,8 @@ CONTENTS                                                         *ale-contents*
       vint................................|ale-vim-vint|
     vim help..............................|ale-vim-help-options|
       write-good..........................|ale-vim-help-write-good|
+    vue...................................|ale-vue-options|
+      prettier............................|ale-vue-prettier|
     xhtml.................................|ale-xhtml-options|
       write-good..........................|ale-xhtml-write-good|
     xml...................................|ale-xml-options|
@@ -269,12 +293,12 @@ Notes:
 * ASM: `gcc`
 * Ansible: `ansible-lint`
 * API Blueprint: `drafter`
-* AsciiDoc: `proselint`, `write-good`, `redpen`
+* AsciiDoc: `alex`!!, `proselint`, `redpen`, `write-good`
 * Awk: `gawk`
 * Bash: `shell` (-n flag), `shellcheck`, `shfmt`
 * Bourne Shell: `shell` (-n flag), `shellcheck`, `shfmt`
 * C: `cppcheck`, `cpplint`!!, `gcc`, `clang`, `clangtidy`!!, `clang-format`
-* C++ (filetype cpp): `clang`, `clangcheck`!!, `clangtidy`!!, `cppcheck`, `cpplint`!!, `gcc`, `clang-format`
+* C++ (filetype cpp): `clang`, `clangcheck`!!, `clangtidy`!!, `clang-format`, `cppcheck`, `cpplint`!!, `gcc`
 * CUDA: `nvcc`!!
 * C#: `mcs`, `mcsc`!!
 * Chef: `foodcritic`
@@ -288,48 +312,53 @@ Notes:
 * Dafny: `dafny`!!
 * Dart: `dartanalyzer`!!, `language_server`
 * Dockerfile: `hadolint`
-* Elixir: `credo`, `dogma`!!
+* Elixir: `credo`, `dialyxir`, `dogma`!!
 * Elm: `elm-format, elm-make`
-* Erb: `erb`, `erubis`
+* Erb: `erb`, `erubi`, `erubis`
 * Erlang: `erlc`, `SyntaxErl`
+* Fish: `fish` (-n flag)
 * Fortran: `gcc`
+* Fountain: `proselint`
 * FusionScript: `fusion-lint`
-* GLSL: glslang
-* Go: `gofmt`, `goimports`, `go vet`, `golint`, `gometalinter`!!, `go build`!!, `gosimple`!!, `staticcheck`!!
-* GraphQL: `eslint`, `gqlint`
+* Git Commit Messages: `gitlint`
+* GLSL: glslang, `glslls`
+* Go: `gofmt`, `goimports`, `go vet`, `golint`, `gotype`, `gometalinter`!!, `go build`!!, `gosimple`!!, `staticcheck`!!
+* GraphQL: `eslint`, `gqlint`, `prettier`
 * Haml: `haml-lint`
 * Handlebars: `ember-template-lint`
-* Haskell: `ghc`, `stack-ghc`, `stack-build`!!, `ghc-mod`, `stack-ghc-mod`, `hlint`, `hdevtools`, `hfmt`
-* HTML: `HTMLHint`, `proselint`, `tidy`, `write-good`
+* Haskell: `brittany`, `ghc`, `stack-ghc`, `stack-build`!!, `ghc-mod`, `stack-ghc-mod`, `hlint`, `hdevtools`, `hfmt`
+* HTML: `alex`!!, `HTMLHint`, `proselint`, `tidy`, `write-good`
 * Idris: `idris`
-* Java: `checkstyle`, `javac`
-* JavaScript: `eslint`, `flow`, `jscs`, `jshint`, `prettier`, `prettier-eslint` >= 4.2.0, `prettier-standard`, `standard`, `xo`
-* JSON: `jsonlint`, `prettier`
+* Java: `checkstyle`, `javac`, `google-java-format`
+* JavaScript: `eslint`, `flow`, `jscs`, `jshint`, `prettier`, `prettier-eslint`, `prettier-standard`, `standard`, `xo`
+* JSON: `fixjson`, `jsonlint`, `jq`, `prettier`
 * Kotlin: `kotlinc`, `ktlint`
-* LaTeX (tex): `chktex`, `lacheck`, `proselint`, `write-good`, `redpen`
+* LaTeX (tex): `alex`!!, `chktex`, `lacheck`, `proselint`, `redpen`, `vale`, `write-good`
 * Less: `lessc`, `prettier`, `stylelint`
 * LLVM: `llc`
-* Lua: `luacheck`
-* Mail: `proselint`, `vale`
+* Lua: `luac`, `luacheck`
+* Mail: `alex`!!, `proselint`, `vale`
 * Make: `checkmake`
-* Markdown: `mdl`, `proselint`, `vale`, `remark-lint`, `write-good`, `redpen`
+* Markdown: `alex`!!, `mdl`, `prettier`, `proselint`, `redpen`, `remark-lint`, `vale`, `write-good`
 * MATLAB: `mlint`
 * Nim: `nim check`!!
 * nix: `nix-instantiate`
-* nroff: `proselint`, `write-good`
+* nroff: `alex`!!, `proselint`, `write-good`
 * Objective-C: `clang`
 * Objective-C++: `clang`
 * OCaml: `merlin` (see |ale-ocaml-merlin|), `ols`
 * Perl: `perl -c`, `perl-critic`
 * PHP: `hack`, `hackfmt`, `langserver`, `phan`, `php -l`, `phpcs`, `phpmd`, `phpstan`, `phpcbf`
-* Pod: `proselint`, `write-good`
+* PO: `alex`!!, `msgfmt`, `proselint`, `write-good`
+* Pod: `alex`!!, `proselint`, `write-good`
+* Pony: `ponyc`
 * proto: `protoc-gen-lint`
 * Pug: `pug-lint`
 * Puppet: `puppet`, `puppet-lint`
-* Python: `autopep8`, `flake8`, `isort`, `mypy`, `pycodestyle`, `pyls`, `pylint`!!, `yapf`
+* Python: `autopep8`, `flake8`, `isort`, `mypy`, `prospector`, `pycodestyle`, `pyls`, `pylint`!!, `yapf`
 * R: `lintr`
 * ReasonML: `merlin`, `ols`, `refmt`
-* reStructuredText: `proselint`, `rstcheck`, `write-good`, `redpen`
+* reStructuredText: `alex`!!, `proselint`, `redpen`, `rstcheck`, `vale`, `write-good`
 * Re:VIEW: `redpen`
 * RPM spec: `rpmlint`
 * Ruby: `brakeman`, `rails_best_practices`!!, `reek`, `rubocop`, `ruby`
@@ -339,20 +368,21 @@ Notes:
 * Scala: `scalac`, `scalastyle`
 * Slim: `slim-lint`
 * SML: `smlnj`
-* Solidity: `solium`
+* Solidity: `solhint, solium`
 * Stylus: `stylelint`
 * SQL: `sqlint`
 * Swift: `swiftlint`, `swiftformat`
 * Tcl: `nagelfar`!!
 * Terraform: `tflint`
-* Texinfo: `proselint`, `write-good`
-* Text^: `proselint`, `vale`, `write-good`, `redpen`
+* Texinfo: `alex`!!, `proselint`, `write-good`
+* Text^: `alex`!!, `proselint`, `vale`, `write-good`, `redpen`
 * Thrift: `thrift`
 * TypeScript: `eslint`, `prettier`, `tslint`, `tsserver`, `typecheck`
 * Verilog: `iverilog`, `verilator`
 * Vim: `vint`
-* Vim help^: `proselint`, `write-good`
-* XHTML: `proselint`, `write-good`
+* Vim help^: `alex`!!, `proselint`, `write-good`
+* Vue: `prettier`
+* XHTML: `alex`!!, `proselint`, `write-good`
 * XML: `xmllint`
 * YAML: `swaglint`, `yamllint`
 
@@ -605,6 +635,19 @@ g:airline#extensions#ale#enabled             *g:airline#extensions#ale#enabled*
   |airline#extensions#ale#warning_symbol|.
 
 
+g:ale_cache_executable_check_failures   *g:ale_cache_executable_check_failures*
+
+  Type: |Number|
+  Default: `0`
+
+  When set to `1`, ALE will cache failing executable checks for linters. By
+  default, only executable checks which succeed will be cached.
+
+  When this option is set to `1`, Vim will have to be restarted after new
+  executables are installed for ALE to be able to run linters for those
+  executables.
+
+
 g:ale_change_sign_column_color                 *g:ale_change_sign_column_color*
 
   Type: |Number|
@@ -622,6 +665,39 @@ g:ale_change_sign_column_color                 *g:ale_change_sign_column_color*
   The sign column color can only be changed globally in Vim. The sign column
   might produce unexpected results if editing different files in split
   windows.
+
+
+g:ale_command_wrapper                                   *g:ale_command_wrapper*
+                                                        *b:ale_command_wrapper*
+  Type: |String|
+  Default: `''`
+
+  An option for wrapping all commands that ALE runs, for linters, fixers,
+  and LSP commands. This option can be set globally, or for specific buffers.
+
+  This option can be used to apply nice to all commands. For example: >
+
+    " Prefix all commands with nice.
+    let g:ale_command_wrapper = 'nice -n5'
+<
+  Use the |ALEInfo| command to view the commands that are run. All of the
+  arguments for commands will be put on the end of the wrapped command by
+  default. A `%*` marker can be used to spread the arguments in the wrapped
+  command. >
+
+    " Has the same effect as the above.
+    let g:ale_command_wrapper = 'nice -n5 %*'
+<
+
+  For passing all of the arguments for a command as one argument to a wrapper,
+  `%@` can be used instead. >
+
+    " Will result in say: /bin/bash -c 'other-wrapper -c "some command" -x'
+    let g:ale_command_wrapper = 'other-wrapper -c %@ -x'
+<
+  For commands including `&&` or `;`, only the last command in the list will
+  be passed to the wrapper. `&&` is most commonly used in ALE to change the
+  working directory before running a command.
 
 
 g:ale_completion_delay                                 *g:ale_completion_delay*
@@ -1016,6 +1092,7 @@ g:ale_linters                                                   *g:ale_linters*
   \   'csh': ['shell'],
   \   'go': ['gofmt', 'golint', 'go vet'],
   \   'help': [],
+  \   'perl': ['perlcritic'],
   \   'python': ['flake8', 'mypy', 'pylint'],
   \   'rust': ['cargo'],
   \   'spec': [],
@@ -1241,6 +1318,11 @@ g:ale_set_quickfix                                         *g:ale_set_quickfix*
   Problems from every buffer ALE has checked will be included in the quickfix
   list, which can be checked with |:copen|. Problems will be de-duplicated.
 
+  This feature should not be used in combination with tools for searching for
+  matches and commands like |:cfdo|, as ALE will replace the quickfix list
+  pretty frequently. If you wish to use such tools, you should populate the
+  loclist instead.
+
 
 g:ale_set_signs                                               *g:ale_set_signs*
 
@@ -1377,7 +1459,7 @@ g:ale_virtualenv_dir_names                         *g:ale_virtualenv_dir_names*
 b:ale_virtualenv_dir_names                         *b:ale_virtualenv_dir_names*
 
   Type: |List|
-  Default: `['.env', 'env', 've-py3', 've', 'virtualenv']`
+  Default: `['.env', 'env', 've-py3', 've', 'virtualenv', 'venv']`
 
   A list of directory names to be used when searching upwards from Python
   files to discover virtulenv directories with.
@@ -2031,7 +2113,7 @@ ale#linter#Define(filetype, linter)                       *ale#linter#Define()*
                          the file on disk, including |g:ale_lint_on_enter|
                          and |g:ale_lint_on_save|. Linters with this option
                          set to `1` will also be run when linters are run
-                         manually, per |ALELint-autocmd|.
+                         manually, per |ALELintPost-autocmd|.
 
                          When this option is set to `1`, `read_buffer` will
                          be set automatically to `0`. The two options cannot
@@ -2165,19 +2247,33 @@ ale#statusline#Count(buffer)                           *ale#statusline#Count()*
   `total`         -> The total number of problems.
 
 
-ALELint                                                       *ALELint-autocmd*
+ALELintPre                                                 *ALELintPre-autocmd*
+ALELintPost                                               *ALELintPost-autocmd*
 
-  This |User| autocommand is triggered by ALE every time it completes a lint
-  cycle. It can be used to update statuslines, send notifications, or
-  complete any other operation that needs to be done after linting has been
-  performed.
-
-  For example, you can echo a message when linting is complete like so:
-  >
-  autocmd User ALELint unsilent echom 'ALE run!'
-<
+  These |User| autocommands are triggered before and after every lint cycle.
+  They can be used to update statuslines, send notifications, etc.
   The autocmd commands are run with |:silent|, so |:unsilent| is required for
   echoing messges.
+
+  For example to change the color of the statusline while the linter is
+  running:
+>
+    augroup ALEProgress
+        autocmd!
+        autocmd User ALELintPre  hi Statusline ctermfg=darkgrey
+        autocmd User ALELintPOST hi Statusline ctermfg=NONE
+    augroup end
+<
+  Or to display the progress in the statusline:
+>
+    let s:ale_running = 0
+    let l:stl .= '%{s:ale_running ? "[linting]" : ""}'
+    augroup ALEProgress
+        autocmd!
+        autocmd User ALELintPre  let s:ale_running = 1 | redrawstatus
+        autocmd User ALELintPost let s:ale_running = 0 | redrawstatus
+    augroup end
+<
 
 ===============================================================================
 10. Special Thanks                                         *ale-special-thanks*

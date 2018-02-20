@@ -48,7 +48,7 @@ Execute(The flake8 handler should handle basic warnings and syntax errors):
   \   'stdin:8:3: E999 SyntaxError: invalid syntax',
   \ ])
 
-Execute(The flake8 handler should set end column indexes should be set for certain errors):
+Execute(The flake8 handler should set end column indexes for certain errors):
   AssertEqual
   \ [
   \   {
@@ -213,4 +213,34 @@ Execute(Disabling trailing blank line warnings should work):
   \ ],
   \ ale_linters#python#flake8#Handle(bufnr(''), [
   \   'foo.py:6:1: W391 blank line at end of file',
+  \ ])
+
+Execute(F401 should be a warning):
+  AssertEqual
+  \ [
+  \   {
+  \     'lnum': 6,
+  \     'col': 1,
+  \     'code': 'F401',
+  \     'type': 'W',
+  \     'text': 'module imported but unused',
+  \   },
+  \ ],
+  \ ale_linters#python#flake8#Handle(bufnr(''), [
+  \   'foo.py:6:1: F401 module imported but unused',
+  \ ])
+
+Execute(E112 should be a syntax error):
+  AssertEqual
+  \ [
+  \   {
+  \     'lnum': 6,
+  \     'col': 1,
+  \     'code': 'E112',
+  \     'type': 'E',
+  \     'text': 'expected an indented block',
+  \   },
+  \ ],
+  \ ale_linters#python#flake8#Handle(bufnr(''), [
+  \   'foo.py:6:1: E112 expected an indented block',
   \ ])

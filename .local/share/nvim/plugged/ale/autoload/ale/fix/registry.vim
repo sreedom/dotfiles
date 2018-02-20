@@ -45,7 +45,7 @@ let s:default_registry = {
 \   },
 \   'prettier': {
 \       'function': 'ale#fixers#prettier#Fix',
-\       'suggested_filetypes': ['javascript', 'typescript', 'json', 'css', 'scss', 'less'],
+\       'suggested_filetypes': ['javascript', 'typescript', 'json', 'css', 'scss', 'less', 'markdown', 'graphql', 'vue'],
 \       'description': 'Apply prettier to a file.',
 \   },
 \   'prettier_eslint': {
@@ -53,6 +53,11 @@ let s:default_registry = {
 \       'suggested_filetypes': ['javascript'],
 \       'description': 'Apply prettier-eslint to a file.',
 \       'aliases': ['prettier-eslint'],
+\   },
+\   'importjs': {
+\       'function': 'ale#fixers#importjs#Fix',
+\       'suggested_filetypes': ['javascript'],
+\       'description': 'automatic imports for javascript',
 \   },
 \   'puppetlint': {
 \       'function': 'ale#fixers#puppetlint#Fix',
@@ -134,6 +139,11 @@ let s:default_registry = {
 \       'suggested_filetypes': ['haskell'],
 \       'description': 'Fix Haskell files with hfmt.',
 \   },
+\   'brittany': {
+\       'function': 'ale#fixers#brittany#Fix',
+\       'suggested_filetypes': ['haskell'],
+\       'description': 'Fix Haskell files with brittany.',
+\   },
 \   'refmt': {
 \       'function': 'ale#fixers#refmt#Fix',
 \       'suggested_filetypes': ['reason'],
@@ -143,6 +153,21 @@ let s:default_registry = {
 \       'function': 'ale#fixers#shfmt#Fix',
 \       'suggested_filetypes': ['sh'],
 \       'description': 'Fix sh files with shfmt.',
+\   },
+\   'google_java_format': {
+\       'function': 'ale#fixers#google_java_format#Fix',
+\       'suggested_filetypes': ['java'],
+\       'description': 'Fix Java files with google-java-format.',
+\   },
+\   'fixjson': {
+\       'function': 'ale#fixers#fixjson#Fix',
+\       'suggested_filetypes': ['json'],
+\       'description': 'Fix JSON files with fixjson.',
+\   },
+\   'jq': {
+\       'function': 'ale#fixers#jq#Fix',
+\       'suggested_filetypes': ['json'],
+\       'description': 'Fix JSON files with jq.',
 \   },
 \}
 

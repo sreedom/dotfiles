@@ -94,7 +94,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export PATH="/Users/sarakkal/miniconda3/bin:$PATH"
+export PATH="/usr/local/anaconda3/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 # Easy access
 export projects="$HOME/projects"

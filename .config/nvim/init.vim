@@ -36,7 +36,7 @@ set  mouse=a
 set clipboard=unnamed
 
 " relative numbers
-set relativenumber
+" set relativenumber
 
 " move between windows using ctrl + arrows
 nnoremap <C-Down> <C-w>j<CR>

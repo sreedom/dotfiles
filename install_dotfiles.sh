@@ -4,3 +4,4 @@ cp -r .oh-my-zsh ~/
 cp -r .vim ~/
 cp -r .vimrc ~/
 cp -r .zshrc ~/
+cp -r .local ~/
