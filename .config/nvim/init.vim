@@ -71,5 +71,8 @@ nnoremap <C-p> :Files<CR>
 nnoremap <Up> gk
 nnoremap <Down> gj
 
+nnoremap <C-Right> <C-w>l
+nnoremap <C-Left> <C-w>h
+
 cnoreabbrev Q q
 

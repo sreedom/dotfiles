@@ -94,8 +94,11 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_162.jdk/Contents/Home"
+# export PATH=$PATH:$JAVA_HOME/bin
 export PATH="/usr/local/anaconda3/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
+
 # Easy access
 export projects="$HOME/projects"
 export atls="$HOME/projects/bitbucket.org/atlassian"
@@ -109,11 +112,13 @@ export EDITOR=nvim
 export PYSPARK_DRIVER_PYTHON=ipython
 
 # cloudtoken additions
-bashrc_additions="$HOME/miniconda3/share/cloudtoken/shell_additions/bashrc_additions"
+bashrc_additions="/usr/local/anaconda3/share/cloudtoken/shell_additions/bashrc_additions"
 if [[ -f $bashrc_additions ]]
 then
 	source $bashrc_additions
 fi
+
+eval "$(pipenv --completion)"
 
 # todo manager
 alias todo='python /Users/sarakkal/projects/github.com/t/t.py --task-dir ~/tasks --list tasks'
@@ -130,3 +135,4 @@ function vssh {
 	echo vault-ssh --role dlf hadoop@$hostname -- -D localhost:9999
 	vault-ssh --role dlf hadoop@$hostname -- -D localhost:9999
 }
+unsetopt APPEND_HISTORY
