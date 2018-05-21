@@ -9,6 +9,7 @@ gettext
 gmp
 gnupg
 gnutls
+htop
 httpie
 icu4c
 imagemagick
@@ -48,8 +49,11 @@ pcre
 pinentry
 pkg-config
 postgresql
+pstree
+pyenv
 python
 readline
+redis
 sbt
 scala
 sqlite

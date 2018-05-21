@@ -106,7 +106,7 @@ export VAULT_ADDR="https://vault.growth.internal.atlassian.com:8200"
 
 alias projects="cd $projects"
 alias atls="cd $atls"
-alias vim="nvim"
+alias vim="PATH=/usr/local/bin:/usr/local/anaconda3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin nvim"
 
 export EDITOR=nvim
 export PYSPARK_DRIVER_PYTHON=ipython
@@ -135,4 +135,5 @@ function vssh {
 	echo vault-ssh --role dlf hadoop@$hostname -- -D localhost:9999
 	vault-ssh --role dlf hadoop@$hostname -- -D localhost:9999
 }
-unsetopt APPEND_HISTORY
+unsetopt inc_append_history
+unsetopt share_history
