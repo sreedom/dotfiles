@@ -82,7 +82,7 @@ let s:colors = {
       \ 168: '#ce537a', 169: '#bc6ec5', 171: '#6094DB', 173: '#e18254', 176: '#E697E6', 177: '#D881ED',
       \ 178: '#d1951d', 179: '#d4b261', 196: '#e0211d', 204: '#ce537a', 207: '#FF68DD', 214: '#FF4848',
       \ 218: '#d19a66', 225: '#FFC8C8', 229: '#fff06a', 233: '#303030', 234: '#212026', 235: '#292b2e',
-      \ 236: '#34323e', 238: '#544a65', 241: '#534b5d', 244: '#b4d1b6',
+      \ 236: '#34323e', 238: '#544a65', 241: '#534b5d', 243: '#65737e', 244: '#b4d1b6',
       \ }
 
 function! s:hi(item, fg, bg, cterm, gui)
@@ -169,7 +169,7 @@ call s:hi('Typedef'    , 68 , '' , 'None'      , 'None')
 call s:hi('Underlined' , ''  , '' , 'underline' , 'underline')
 
 call s:hi('Search'    , 16 , 76    , 'bold' , 'bold')
-call s:hi('IncSearch' , 16 , 76    , 'bold' , 'bold')
+call s:hi('IncSearch' , 16 , 167   , 'bold' , 'bold')
 call s:hi('MatchParen', 40 , s:bg0 , 'bold,underline', 'bold,underline')
 
 call s:hi('ModeMsg'  , 229 , '' , 'None' , 'None')
@@ -196,7 +196,7 @@ call s:hi('ErrorMsg' , 196 , s:bg , 'bold' , 'bold')
 call s:hi('Special'        , 169 , '' , 'None' , 'None')
 call s:hi('SpecialKey'     , 59  , '' , 'None' , 'None')
 call s:hi('SpecialChar'    , 171 , '' , 'bold' , 'bold')
-call s:hi('SpecialComment' , 24  , '' , 'None' , 'None')
+call s:hi('SpecialComment' , 243  , '' , 'None' , 'None')
 
 call s:hi('SpellBad'   , 168 , '' , 'underline' , 'undercurl')
 call s:hi('SpellCap'   , 110 , '' , 'underline' , 'undercurl')
@@ -213,6 +213,11 @@ call s:hi('VisualNOS' , '' , s:bg3 , 'None' , 'None')
 
 " tilde group
 call s:hi('NonText' , 241 , '' , 'None' , 'None')
+
+call s:hi('Terminal' , 249 , s:bg , 'None' , 'None')
+
+call s:hi('diffAdded'   , 36  , '' , 'None' , 'None')
+call s:hi('diffRemoved' , 167 , '' , 'None' , 'None')
 
 hi MatchParen   guibg=NONE
 hi SignColumn   guibg=NONE
@@ -408,6 +413,10 @@ call s:hi('SignatureMarkText', 178, '', 'bold', 'bold')
 " vim_current_word
 call s:hi('CurrentWord'      , '' , s:bg1 , 'underline' , 'underline')
 call s:hi('CurrentWordTwins' , '' , s:bg1 , 'none'      , 'none')
+
+" quick-scope
+call s:hi('QuickScopePrimary'   , 155 , '' , 'underline' , 'underline')
+call s:hi('QuickScopeSecondary' , 81  , '' , 'underline' , 'underline')
 
 delf s:hi
 unlet s:color256 s:colors s:bg

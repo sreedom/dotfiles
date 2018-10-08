@@ -15,6 +15,11 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdcommenter'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+Plug 'junegunn/vim-emoji'
+Plug 'inkarkat/vim-mark'
+Plug 'inkarkat/vim-ingo-library'
+" Not needed if completer is installed
+" Plug 'davidhalter/jedi-vim'
 
 " colorschemes
 Plug 'liuchengxu/space-vim-dark'
@@ -45,12 +50,22 @@ nnoremap <C-Left> <C-w>h<CR>
 nnoremap <C-Right> <C-w>l<CR>
 
 
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set smarttab
+
 "plugin specific configuration
 "NerdTree
 let g:NERDSpaceDelims = 1
 let g:NERDDefaultAlign = 1
+silent! nmap <F2> :NERDTreeToggle<CR>
+silent! map <F3> :NERDTreeFind<CR>
 
 highlight ALEError cterm=undercurl
+let g:python3_host_prog = '/Users/sarakkal/.pyenv/versions/neovim3/bin/python'
+
+"Ale
 let g:ale_fixers = {
 \    'python': [
 \        'yapf'
@@ -62,11 +77,12 @@ let g:ale_linters = {
 \    ],
 \}
 nmap <F8> <Plug>(ale_fix)
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set smarttab
-" Keymaps
+
+" Completer
+let g:completer_python_binary = '/Users/sarakkal/.pyenv/versions/neovim3/bin/python'
+
+
+
 nnoremap <C-p> :Files<CR>     
 nnoremap <Up> gk
 nnoremap <Down> gj

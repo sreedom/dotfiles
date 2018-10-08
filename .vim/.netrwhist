@@ -1,8 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/Users/sarakkal/projects/bitbucket.org/atlassian/event-catalog/EventCatalog'
-let g:netrw_dirhist_2='/Users/sarakkal/projects/bitbucket.org/atlassian/event-catalog'
-let g:netrw_dirhist_3='/Users/sarakkal/projects/bitbucket.org/atlassian/event-catalog/EventCatalog'
-let g:netrw_dirhist_4='/Users/sarakkal/projects/bitbucket.org/atlassian/event-catalog'
-let g:netrw_dirhist_5='/Users/sarakkal/projects/bitbucket.org/atlassian/firstblog'
-let g:netrw_dirhist_6='/Users/sarakkal/projects/bitbucket.org/atlassian/analytics-python-client/analytics_client/tests'
+let g:netrw_dirhist_cnt =0

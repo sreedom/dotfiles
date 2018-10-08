@@ -7,7 +7,8 @@ export ZSH=~/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
+ZSH_THEME="spaceship"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -61,6 +62,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(
   zsh-autosuggestions
   git
+  pyenv
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -96,8 +98,8 @@ source $ZSH/oh-my-zsh.sh
 
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_162.jdk/Contents/Home"
 # export PATH=$PATH:$JAVA_HOME/bin
-export PATH="/usr/local/anaconda3/bin:$PATH"
-export PATH="/usr/local/bin:$PATH"
+# export PATH="/usr/local/anaconda3/bin:$PATH"
+export PATH="$PATH:/usr/local/bin"
 
 # Easy access
 export projects="$HOME/projects"
@@ -106,24 +108,23 @@ export VAULT_ADDR="https://vault.growth.internal.atlassian.com:8200"
 
 alias projects="cd $projects"
 alias atls="cd $atls"
-alias vim="PATH=/usr/local/bin:/usr/local/anaconda3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin nvim"
-
-export EDITOR=nvim
+alias vim="PATH=/Users/sarakkal/.pyenv/shims:$PATH nvim"
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+export EDITOR=vim
 export PYSPARK_DRIVER_PYTHON=ipython
 
 # cloudtoken additions
-bashrc_additions="/usr/local/anaconda3/share/cloudtoken/shell_additions/bashrc_additions"
-if [[ -f $bashrc_additions ]]
-then
-	source $bashrc_additions
-fi
 
-eval "$(pipenv --completion)"
+if command -v pipenv 1>/dev/null 2>&1; then
+  eval "$(pipenv --completion)"
+fi
 
 # todo manager
 alias todo='python /Users/sarakkal/projects/github.com/t/t.py --task-dir ~/tasks --list tasks'
 
 alias pypy='/usr/local/pypy3-v5.10.1-osx64/bin/pypy3'
+alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
+
 # iterm integration
 source ~/.iterm2_shell_integration.zsh
 
@@ -137,3 +138,20 @@ function vssh {
 }
 unsetopt inc_append_history
 unsetopt share_history
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# pyenv configuration
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+# if command -v pyenv 1>/dev/null 2>&1; then
+  # eval "$(pyenv init -)"
+  # eval "$(pyenv virtualenv-init -)"
+# fi
+# source $(pyenv root)/completions/pyenv.zsh
+pyenv global 3.6.5
+if [[ -f "${HOME}/.config/cloudtoken/bashrc_additions" ]]; then
+    source "${HOME}/.config/cloudtoken/bashrc_additions"
+fi

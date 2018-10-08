@@ -49,6 +49,7 @@ call s:defs([
 \'command! -bar -bang Colors                             call fzf#vim#colors(<bang>0)',
 \'command!      -bang -nargs=+ -complete=dir Locate      call fzf#vim#locate(<q-args>, <bang>0)',
 \'command!      -bang -nargs=* Ag                        call fzf#vim#ag(<q-args>, <bang>0)',
+\'command!      -bang -nargs=* Rg                        call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, <bang>0)',
 \'command!      -bang -nargs=* Tags                      call fzf#vim#tags(<q-args>, <bang>0)',
 \'command!      -bang -nargs=* BTags                     call fzf#vim#buffer_tags(<q-args>, <bang>0)',
 \'command! -bar -bang Snippets                           call fzf#vim#snippets(<bang>0)',
@@ -112,7 +113,10 @@ if (has('nvim') || has('terminal') && has('patch-8.0.995')) && (get(g:, 'fzf_sta
   augroup END
 endif
 
-let g:fzf#vim#buffers = {}
+if !exists('g:fzf#vim#buffers')
+  let g:fzf#vim#buffers = {}
+endif
+
 augroup fzf_buffers
   autocmd!
   if exists('*reltimefloat')

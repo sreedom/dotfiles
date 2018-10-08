@@ -4,13 +4,37 @@ import os
 import re
 import logging
 import glob
+import itertools
 from completor import Completor
 
 from .utils import test_subseq, LIMIT
 
 
 logger = logging.getLogger('completor')
-PAT = re.compile('(\w+:(//?[^\s]*)?)|(</[^\s>]*>?)')
+PAT = re.compile('(\w+:(//?[^\s]*)?)|(</[^\s>]*>?)|(//)')
+
+
+def gen_entry(pat, dirname, basename):
+    prefix = len(dirname)
+    if os.path.dirname(dirname) != dirname:
+        prefix += 1
+    for fname in glob.iglob(pat):
+        entry = fname[prefix:]
+        score = test_subseq(basename, entry)
+        if score is None:
+            continue
+
+        abbr = ''
+        if os.path.isdir(os.path.join(dirname, entry)):
+            abbr = ''.join([entry, os.sep])
+        if entry.startswith('.'):
+            score += 100000
+        entry = {
+            'word': entry,
+            'abbr': abbr,
+            'menu': '[F]',
+        }
+        yield entry, score
 
 
 def find(current_dir, input_data):
@@ -25,28 +49,13 @@ def find(current_dir, input_data):
     if not os.path.isabs(dirname):
         dirname = os.path.join(current_dir, dirname)
 
-    dir_spec = os.path.join(dirname, '*')
-    dir_len = len(dir_spec) - 1
-    entries = []
-    for fname in glob.iglob(dir_spec):
-        entry = fname[dir_len:]
-        score = test_subseq(basename, entry)
-        if score is None:
-            continue
+    def _pat(p):
+        return os.path.join(dirname, p)
 
-        abbr = ''
-        if os.path.isdir(os.path.join(dirname, entry)):
-            abbr = ''.join([entry, os.sep])
-        if entry.startswith('.'):
-            score += 1000
-        entry = {
-            'word': entry,
-            'abbr': abbr,
-            'menu': '[F]',
-        }
-        entries.append((entry, score))
-        if len(entries) >= LIMIT:
-            break
+    hidden = gen_entry(_pat('.*'), dirname, basename)
+    chain = gen_entry(_pat('*'), dirname, basename), hidden
+
+    entries = list(itertools.islice(itertools.chain(*chain), LIMIT))
     entries.sort(key=lambda x: x[1])
     return entries
 
@@ -68,7 +77,7 @@ class Filename(Completor):
         # Tail part
         (?:
         # any alphanumeric, symbol or space literal
-        [/a-zA-Z0-9(){}$ +_~.'"\x80-\xff-\[\]]|
+        [/@a-zA-Z0-9(){}$ +_~.'"\x80-\xff-\[\]]|
 
         # skip any special symbols
         [^\x20-\x7E]|
@@ -77,12 +86,15 @@ class Filename(Completor):
         \\.
         )*$""", re.U | re.X)
 
-    ident = r"""[a-zA-Z0-9(){}$ +_~.'"\x80-\xff-\[\]]*"""
+    # Ingore whitespace.
+    ident = r"""[@a-zA-Z0-9(){}$+_~.'"\x80-\xff-\[\]]*"""
 
     def parse(self, base):
         """
         :param base: type unicode
         """
+        # Ignore white space.
+        base = base.split()[-1]
         logger.info('start filename parse: %s', base)
         pat = list(PAT.finditer(base))
         if pat:
